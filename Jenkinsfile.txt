@@ -6,7 +6,7 @@ tools {
     stages{
         stage('Build'){
             steps {
-                echo 'Error Solved'
+                echo 'Error ReSolved'
             }
             post {
                 success {
