@@ -1,5 +1,4 @@
 pipeline {
-<<<<<<< HEAD
 	agent any
 	stages {
 		stage('Build'){
@@ -10,50 +9,3 @@ pipeline {
 	}
 
 }
-=======
-    agent any
-tools {
-        maven "localmaven"
-    }
-    stages{
-        stage('Build'){
-            steps {
-                echo 'Error ReSolved'
-            }
-            post {
-                success {
-                    echo 'Now Archiving...'
-                    archiveArtifacts artifacts: '**/target/*.war'
-                }
-            }
-        }
-stage ('Deploy to Staging'){
-            steps {
-                build job: 'Deploy-to-staging'
-            }
-        }
-
-stage ('Deploy to Production'){
-            steps{
-                timeout(time:5, unit:'DAYS'){
-                    input message:'Approve PRODUCTION Deployment?'
-                }
-
-                build job: 'Deploy-to-Prod'
-            }
-            post {
-                success {
-                    echo 'Code deployed to Production.'
-                }
-
-                failure {
-                    echo ' Deployment failed.'
-                }
-            }
-        }
-
-
-    }
-}
-        
->>>>>>> 225108fbf84815f929d7be1baf058710972f3a28
